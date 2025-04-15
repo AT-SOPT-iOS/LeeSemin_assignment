@@ -115,7 +115,7 @@ class LoginViewController: UIViewController {
     }
     
     private func setUI() {
-        [
+        view.addSubviews(
             titleLabel,
             idTextField,
             passwordTextField,
@@ -125,9 +125,7 @@ class LoginViewController: UIViewController {
             findPasswordLabel,
             questionLabel,
             signUpButton
-        ].forEach {
-            self.view.addSubview($0)
-        }
+        )
     }
     
     private func setLayout() {
