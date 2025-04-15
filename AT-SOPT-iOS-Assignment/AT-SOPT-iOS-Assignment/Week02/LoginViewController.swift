@@ -23,8 +23,8 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "아이디"
         textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
-        textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
-        textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+        textField.textColor = .gray2
+        textField.backgroundColor = .gray4
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
         textField.setLeftPadding(25)
@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "비밀번호"
         textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
-        textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
-        textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+        textField.textColor = .gray2
+        textField.backgroundColor = .gray4
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
         textField.setLeftPadding(25)
@@ -46,10 +46,10 @@ class LoginViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("로그인하기", for: .normal)
-        button.setTitleColor(UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1), for: .normal)
+        button.setTitleColor(.gray2, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         button.backgroundColor = .clear
-        button.layer.borderColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1).cgColor
+        button.layer.borderColor = UIColor(named: "gray4")?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
         return button
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
     private let findIdLabel: UILabel = {
         let label = UILabel()
         label.text = "아이디 찾기"
-        label.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
+        label.textColor = .gray2
         label.textAlignment = .center
         label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         return label
@@ -66,14 +66,14 @@ class LoginViewController: UIViewController {
     
     private let verticalLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+        view.backgroundColor = .gray4
         return view
     }()
     
     private let findPasswordLabel: UILabel = {
         let label = UILabel()
         label.text = "비밀번호 찾기"
-        label.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
+        label.textColor = .gray2
         label.textAlignment = .center
         label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         return label
@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
     private let questionLabel: UILabel = {
         let label = UILabel()
         label.text = "아직 계정이 없으신가요?"
-        label.textColor = UIColor(red: 98/255, green: 98/255, blue: 98/255, alpha: 1)
+        label.textColor = .gray3
         label.textAlignment = .center
         label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         return label
@@ -90,19 +90,17 @@ class LoginViewController: UIViewController {
     
     private let signUpButton: UIButton = {
         let button = UIButton()
-        let title = "닉네임 만들러가기"
         let attributedTitle = NSAttributedString(
-            string: title,
+            string: "닉네임 만들러가기",
             attributes: [
                 .underlineStyle: NSUnderlineStyle.single.rawValue,
-                .foregroundColor: UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1),
+                .foregroundColor: UIColor(named: "gray2"),
                 .font: UIFont(name: "Pretendard-Regular", size: 14)
             ]
         )
         button.setAttributedTitle(attributedTitle, for: .normal)
         return button
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
