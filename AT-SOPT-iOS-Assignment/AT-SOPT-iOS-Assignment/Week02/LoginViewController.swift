@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
         textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
+        textField.setLeftPadding(25)
         return textField
     }()
     
@@ -38,6 +39,7 @@ class LoginViewController: UIViewController {
         textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
+        textField.setLeftPadding(25)
         return textField
     }()
     
