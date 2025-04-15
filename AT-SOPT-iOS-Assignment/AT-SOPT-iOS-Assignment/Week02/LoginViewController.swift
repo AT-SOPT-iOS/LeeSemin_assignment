@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.setTextField(placeholder: "비밀번호")
-        textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        textField.isSecureTextEntry = true
         textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
         textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         return textField

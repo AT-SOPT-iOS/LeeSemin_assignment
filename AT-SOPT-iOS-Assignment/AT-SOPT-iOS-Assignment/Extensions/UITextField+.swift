@@ -12,6 +12,7 @@ extension UITextField {
         self.placeholder = placeholder
         self.font = UIFont(name: "Pretendard-SemiBold", size: 15)
         self.textColor = .gray2
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray2])
         self.backgroundColor = .gray4
         self.layer.cornerRadius = 3
         self.clipsToBounds = true
