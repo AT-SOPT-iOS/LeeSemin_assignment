@@ -21,13 +21,7 @@ class LoginViewController: UIViewController {
     
     private let idTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "아이디"
-        textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
-        textField.textColor = .gray2
-        textField.backgroundColor = .gray4
-        textField.layer.cornerRadius = 3
-        textField.clipsToBounds = true
-        textField.setLeftPadding(25)
+        textField.setTextField(placeholder: "아이디")
         textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
         return textField
@@ -35,13 +29,7 @@ class LoginViewController: UIViewController {
     
     private let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "비밀번호"
-        textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
-        textField.textColor = .gray2
-        textField.backgroundColor = .gray4
-        textField.layer.cornerRadius = 3
-        textField.clipsToBounds = true
-        textField.setLeftPadding(25)
+        textField.setTextField(placeholder: "비밀번호")
         textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
         return textField
