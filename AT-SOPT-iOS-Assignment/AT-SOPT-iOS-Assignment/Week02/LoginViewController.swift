@@ -15,14 +15,14 @@ class LoginViewController: UIViewController {
         label.text = "TVING ID 로그인"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 23, weight: .semibold)
+        label.font = UIFont(name: "Pretendard-Medium", size: 23)
         return label
     }()
     
     private let idTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "아이디"
-        textField.font = .systemFont(ofSize: 15, weight: .semibold)
+        textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
         textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
         textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
         textField.layer.cornerRadius = 3
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     private let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호"
-        textField.font = .systemFont(ofSize: 15, weight: .semibold)
+        textField.font = UIFont(name: "Pretendard-SemiBold", size: 15)
         textField.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
         textField.backgroundColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
         textField.layer.cornerRadius = 3
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         button.backgroundColor = .clear
         button.layer.borderColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1).cgColor
         button.layer.borderWidth = 1
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
         label.text = "아이디 찾기"
         label.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         return label
     }()
     
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
         label.text = "비밀번호 찾기"
         label.textColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1)
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         return label
     }()
     
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
         label.text = "아직 계정이 없으신가요?"
         label.textColor = UIColor(red: 98/255, green: 98/255, blue: 98/255, alpha: 1)
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         return label
     }()
     
@@ -96,7 +96,7 @@ class LoginViewController: UIViewController {
             attributes: [
                 .underlineStyle: NSUnderlineStyle.single.rawValue,
                 .foregroundColor: UIColor.white,
-                .font: UIFont.systemFont(ofSize: 14)
+                .font: UIFont(name: "Pretendard-Regular", size: 14)
             ]
         )
         button.setAttributedTitle(attributedTitle, for: .normal)
