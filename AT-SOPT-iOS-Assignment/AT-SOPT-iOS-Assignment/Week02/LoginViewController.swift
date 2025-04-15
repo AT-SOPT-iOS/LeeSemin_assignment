@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
         textField.setTextField(placeholder: "아이디")
         textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -32,6 +33,7 @@ class LoginViewController: UIViewController {
         textField.setTextField(placeholder: "비밀번호")
         textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -40,7 +42,6 @@ class LoginViewController: UIViewController {
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.gray2, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
-        button.backgroundColor = .clear
         button.layer.borderColor = UIColor(named: "gray4")?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
@@ -184,4 +185,18 @@ class LoginViewController: UIViewController {
         textField.layer.borderColor = UIColor.clear.cgColor
         textField.layer.borderWidth = 0
     }
+    
+    @objc private func textFieldsDidChange() {
+        let isIdEmpty = idTextField.text?.isEmpty ?? true
+        let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
+        
+        if !isIdEmpty && !isPasswordEmpty {
+            loginButton.backgroundColor = .tvingRed
+            loginButton.setTitleColor(.white, for: .normal)
+        } else {
+            loginButton.backgroundColor = .clear
+            loginButton.setTitleColor(.gray2, for: .normal)
+        }
+    }
+    
 }
