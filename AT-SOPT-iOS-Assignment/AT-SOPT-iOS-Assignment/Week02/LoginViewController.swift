@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("로그인하기", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         button.backgroundColor = .clear
         button.layer.borderColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1).cgColor
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController {
             string: title,
             attributes: [
                 .underlineStyle: NSUnderlineStyle.single.rawValue,
-                .foregroundColor: UIColor.white,
+                .foregroundColor: UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1),
                 .font: UIFont(name: "Pretendard-Regular", size: 14)
             ]
         )
@@ -166,7 +166,7 @@ class LoginViewController: UIViewController {
             $0.top.equalTo(loginButton.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(1)
-            $0.height.equalTo(24)
+            $0.height.equalTo(12)
         }
         
         findPasswordLabel.snp.makeConstraints {
