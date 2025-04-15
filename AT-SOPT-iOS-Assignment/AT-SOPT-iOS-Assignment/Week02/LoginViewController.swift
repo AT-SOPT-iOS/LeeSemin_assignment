@@ -22,9 +22,6 @@ class LoginViewController: UIViewController {
     private let idTextField: UITextField = {
         let textField = UITextField()
         textField.setTextField(placeholder: "아이디")
-        textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
-        textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
-        textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -32,8 +29,6 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.setTextField(placeholder: "비밀번호")
         textField.isSecureTextEntry = true
-        textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
-        textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -87,7 +82,7 @@ class LoginViewController: UIViewController {
             string: "닉네임 만들러가기",
             attributes: [
                 .underlineStyle: NSUnderlineStyle.single.rawValue,
-                .foregroundColor: UIColor(named: "gray2"),
+                .foregroundColor: UIColor.gray2,
                 .font: UIFont(name: "Pretendard-Regular", size: 14)
             ]
         )
@@ -101,6 +96,9 @@ class LoginViewController: UIViewController {
         setStyle()
         setUI()
         setLayout()
+        
+        setTextFieldTargets(idTextField)
+        setTextFieldTargets(passwordTextField)
     }
     
     private func setStyle() {
@@ -176,6 +174,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func setTextFieldTargets(_ textField: UITextField) {
+        textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
+    }
+    
     @objc private func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.gray2.cgColor
         textField.layer.borderWidth = 1
@@ -198,5 +202,4 @@ class LoginViewController: UIViewController {
             loginButton.setTitleColor(.gray2, for: .normal)
         }
     }
-    
 }
