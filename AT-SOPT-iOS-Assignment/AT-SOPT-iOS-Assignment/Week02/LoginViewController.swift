@@ -28,6 +28,8 @@ class LoginViewController: UIViewController {
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
         textField.setLeftPadding(25)
+        textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
         return textField
     }()
     
@@ -40,6 +42,8 @@ class LoginViewController: UIViewController {
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
         textField.setLeftPadding(25)
+        textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
         return textField
     }()
     
@@ -181,5 +185,15 @@ class LoginViewController: UIViewController {
             $0.leading.equalTo(questionLabel.snp.trailing).offset(40)
             $0.centerY.equalTo(questionLabel)
         }
+    }
+    
+    @objc private func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.gray2.cgColor
+        textField.layer.borderWidth = 1
+    }
+    
+    @objc private func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.clear.cgColor
+        textField.layer.borderWidth = 0
     }
 }
