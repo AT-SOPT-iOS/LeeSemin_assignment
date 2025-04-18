@@ -9,6 +9,8 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
+    var id: String?
+    
     private let tvingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -18,7 +20,6 @@ class WelcomeViewController: UIViewController {
     
     private let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.text = "ㅋㅋ 님\n반가워요!"
         label.textColor = .gray1
         label.textAlignment = .center
         label.numberOfLines = 2
@@ -42,6 +43,7 @@ class WelcomeViewController: UIViewController {
         setStyle()
         setUI()
         setLayout()
+        bindID()
     }
     
     private func setStyle() {
@@ -55,7 +57,7 @@ class WelcomeViewController: UIViewController {
     
     private func setLayout(){
         tvingImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
             $0.width.equalToSuperview()
             $0.height.equalTo(210)
         }
@@ -70,6 +72,16 @@ class WelcomeViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(335)
             $0.height.equalTo(52)
+        }
+    }
+    
+    func setLabelText(id: String?) {
+        self.id = id
+    }
+    
+    private func bindID() {
+        if let id = id {
+            self.welcomeLabel.text = "\(id) 님\n반가워요!"
         }
     }
 }

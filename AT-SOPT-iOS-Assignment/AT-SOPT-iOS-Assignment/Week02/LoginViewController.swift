@@ -215,6 +215,7 @@ class LoginViewController: UIViewController {
         }
         
         let nextVC = WelcomeViewController()
+        nextVC.setLabelText(id: idTextField.text)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
