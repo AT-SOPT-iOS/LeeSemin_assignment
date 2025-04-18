@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private let signUpButton: UIButton = {
+    private lazy var signUpButton: UIButton = {
         let button = UIButton()
         let attributedTitle = NSAttributedString(
             string: "닉네임 만들러가기",
@@ -88,6 +88,7 @@ class LoginViewController: UIViewController {
             ]
         )
         button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -214,8 +215,20 @@ class LoginViewController: UIViewController {
             return
         }
         
-        let nextVC = WelcomeViewController()
-        nextVC.setLabelText(id: idTextField.text)
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        let welcomeVC = WelcomeViewController()
+        welcomeVC.setLabelText(id: idTextField.text)
+        self.navigationController?.pushViewController(welcomeVC, animated: true)
     }
+    
+    @objc private func signUpButtonTapped() {
+        let inputNicknameVC = InputNicknameViewController()
+        inputNicknameVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = inputNicknameVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        
+        present(inputNicknameVC, animated: true, completion: nil)
+    }
+    
 }
