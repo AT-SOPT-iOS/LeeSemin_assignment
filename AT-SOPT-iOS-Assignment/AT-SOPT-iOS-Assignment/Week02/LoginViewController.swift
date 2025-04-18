@@ -97,9 +97,7 @@ class LoginViewController: UIViewController {
         setStyle()
         setUI()
         setLayout()
-        
-        setTextFieldTargets(idTextField)
-        setTextFieldTargets(passwordTextField)
+        setTextFieldTargets()
     }
     
     private func setStyle() {
@@ -175,10 +173,12 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func setTextFieldTargets(_ textField: UITextField) {
-        textField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
-        textField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
-        textField.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
+    private func setTextFieldTargets() {
+        [idTextField, passwordTextField].forEach {
+            $0.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingDidBegin)
+            $0.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingDidEnd)
+            $0.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
+        }
     }
     
     @objc private func textFieldDidBeginEditing(_ textField: UITextField) {
