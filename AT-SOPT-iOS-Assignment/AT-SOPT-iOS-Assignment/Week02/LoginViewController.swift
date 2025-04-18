@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.gray2, for: .normal)
@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
         button.layer.borderColor = UIColor(named: "gray4")?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -190,16 +191,30 @@ class LoginViewController: UIViewController {
         textField.layer.borderWidth = 0
     }
     
+    private func areTextFieldsValid() -> Bool {
+        guard let idText = idTextField.text, !idText.isEmpty,
+              let passwordText = passwordTextField.text, !passwordText.isEmpty else {
+            return false
+        }
+        return true
+    }
+    
     @objc private func textFieldsDidChange() {
-        let isIdEmpty = idTextField.text?.isEmpty ?? true
-        let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
-        
-        if !isIdEmpty && !isPasswordEmpty {
+        if areTextFieldsValid() {
             loginButton.backgroundColor = .tvingRed
             loginButton.setTitleColor(.white, for: .normal)
         } else {
             loginButton.backgroundColor = .clear
             loginButton.setTitleColor(.gray2, for: .normal)
         }
+    }
+    
+    @objc func loginButtonTapped() {
+        if !areTextFieldsValid() {
+            return
+        }
+        
+        let nextVC = WelcomeViewController()
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

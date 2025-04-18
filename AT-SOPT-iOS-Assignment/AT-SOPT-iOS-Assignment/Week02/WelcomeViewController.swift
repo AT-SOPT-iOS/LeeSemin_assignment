@@ -46,6 +46,7 @@ class WelcomeViewController: UIViewController {
     
     private func setStyle() {
         self.view.backgroundColor = .black
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func setUI() {
