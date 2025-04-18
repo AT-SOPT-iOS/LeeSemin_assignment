@@ -9,6 +9,8 @@ import UIKit
 
 class InputNicknameViewController: UIViewController {
     
+    var nicknameCompletion: ((String) -> Void)?
+    
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임을 입력해주세요"
@@ -28,13 +30,14 @@ class InputNicknameViewController: UIViewController {
         return textField
     }()
     
-    private let saveButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("저장하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
         button.backgroundColor = .tvingRed
         button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -73,5 +76,13 @@ class InputNicknameViewController: UIViewController {
             $0.width.equalTo(332)
             $0.height.equalTo(52)
         }
+    }
+    
+    @objc private func saveButtonTapped() {
+        guard let nickname = nicknameTextField.text, !nickname.isEmpty else { return }
+        
+        nicknameCompletion?(nickname)
+        
+        dismiss(animated: true)
     }
 }

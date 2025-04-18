@@ -10,7 +10,7 @@ import SnapKit
 
 class WelcomeViewController: UIViewController {
     
-    var id: String?
+    var user: String?
     
     private let tvingImageView: UIImageView = {
         let imageView = UIImageView()
@@ -76,13 +76,13 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-    func setLabelText(id: String?) {
-        self.id = id
+    func setLabelText(user: String?) {
+        self.user = user
     }
     
     private func bindID() {
-        if let id = id {
-            self.welcomeLabel.text = "\(id) 님\n반가워요!"
+        if let user = user {
+            self.welcomeLabel.text = "\(user) 님\n반가워요!"
         }
     }
 }

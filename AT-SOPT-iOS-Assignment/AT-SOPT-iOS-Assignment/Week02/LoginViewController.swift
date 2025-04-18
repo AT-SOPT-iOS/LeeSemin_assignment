@@ -10,6 +10,8 @@ import SnapKit
 
 class LoginViewController: UIViewController {
     
+    var nickname: String?
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "TVING ID 로그인"
@@ -216,19 +218,23 @@ class LoginViewController: UIViewController {
         }
         
         let welcomeVC = WelcomeViewController()
-        welcomeVC.setLabelText(id: idTextField.text)
+        welcomeVC.setLabelText(user: nickname ?? idTextField.text)
+        
         self.navigationController?.pushViewController(welcomeVC, animated: true)
     }
     
     @objc private func signUpButtonTapped() {
         let inputNicknameVC = InputNicknameViewController()
-        inputNicknameVC.modalPresentationStyle = .pageSheet
         
+        inputNicknameVC.nicknameCompletion = { [weak self] nickname in
+            self?.nickname = nickname
+        }
+        
+        inputNicknameVC.modalPresentationStyle = .pageSheet
         if let sheet = inputNicknameVC.sheetPresentationController {
             sheet.detents = [.medium()]
         }
         
         present(inputNicknameVC, animated: true, completion: nil)
     }
-    
 }
