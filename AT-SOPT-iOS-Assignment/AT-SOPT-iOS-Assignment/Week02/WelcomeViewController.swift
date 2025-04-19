@@ -46,7 +46,11 @@ class WelcomeViewController: UIViewController {
         setLayout()
         bindID()
     }
-    
+}
+
+// MARK: - UI Setting
+
+extension WelcomeViewController {
     private func setStyle() {
         self.view.backgroundColor = .black
         navigationController?.isNavigationBarHidden = true
@@ -56,7 +60,7 @@ class WelcomeViewController: UIViewController {
         view.addSubviews(tvingImageView, welcomeLabel, mainButton)
     }
     
-    private func setLayout(){
+    private func setLayout() {
         tvingImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(30)
             $0.width.equalToSuperview()
@@ -75,7 +79,11 @@ class WelcomeViewController: UIViewController {
             $0.height.equalTo(52)
         }
     }
-    
+}
+
+// MARK: - Data Binding
+
+extension WelcomeViewController {
     func setLabelText(user: String?) {
         self.user = user
     }

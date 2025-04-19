@@ -102,7 +102,11 @@ class LoginViewController: UIViewController {
         setLayout()
         setTextFieldTargets()
     }
-    
+}
+
+// MARK: - UI Setting
+
+extension LoginViewController {
     private func setStyle() {
         self.view.backgroundColor = .black
     }
@@ -165,7 +169,7 @@ class LoginViewController: UIViewController {
             $0.centerY.equalTo(verticalLine)
         }
         
-        questionLabel.snp.makeConstraints{
+        questionLabel.snp.makeConstraints {
             $0.top.equalTo(findIdLabel.snp.bottom).offset(30)
             $0.centerX.equalTo(findIdLabel)
         }
@@ -183,7 +187,11 @@ class LoginViewController: UIViewController {
             $0.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         }
     }
-    
+}
+
+// MARK: - TextField Event Handler
+
+extension LoginViewController {
     @objc private func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.gray2.cgColor
         textField.layer.borderWidth = 1
@@ -211,7 +219,11 @@ class LoginViewController: UIViewController {
             loginButton.setTitleColor(.gray2, for: .normal)
         }
     }
-    
+}
+
+// MARK: - Button Action
+
+extension LoginViewController {
     @objc func loginButtonTapped() {
         if !areTextFieldsValid() {
             return

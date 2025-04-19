@@ -48,7 +48,11 @@ class InputNicknameViewController: UIViewController {
         setUI()
         setLayout()
     }
-    
+}
+
+// MARK: - UI Setting
+
+extension InputNicknameViewController {
     private func setStyle() {
         self.view.backgroundColor = .white
     }
@@ -77,12 +81,14 @@ class InputNicknameViewController: UIViewController {
             $0.height.equalTo(52)
         }
     }
-    
+}
+
+// MARK: - Button Action
+
+extension InputNicknameViewController {
     @objc private func saveButtonTapped() {
         guard let nickname = nicknameTextField.text, !nickname.isEmpty else { return }
-        
         nicknameCompletion?(nickname)
-        
         dismiss(animated: true)
     }
 }
