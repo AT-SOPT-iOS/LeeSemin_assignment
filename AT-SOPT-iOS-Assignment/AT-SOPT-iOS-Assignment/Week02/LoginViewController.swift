@@ -72,6 +72,15 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.text = "아이디를 이메일 형식으로 입력해주세요."
+        label.textColor = .tvingRed
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        label.isHidden = true
+        return label
+    }()
+    
     private let findIdLabel: UILabel = {
         let label = UILabel()
         label.text = "아이디 찾기"
@@ -144,6 +153,7 @@ extension LoginViewController {
             idTextField,
             passwordTextField,
             loginButton,
+            warningLabel,
             findIdLabel,
             verticalLine,
             findPasswordLabel,
@@ -186,6 +196,11 @@ extension LoginViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(335)
             $0.height.equalTo(52)
+        }
+        
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(loginButton.snp.bottom).offset(5)
+            $0.centerX.equalToSuperview()
         }
         
         findIdLabel.snp.makeConstraints {
@@ -256,7 +271,7 @@ extension LoginViewController {
     }
     
     private func areValidTextFields() -> Bool {
-        guard let idText = idTextField.text, !idText.isEmpty,
+        guard let idText = idTextField.text, !idText.isEmpty, idText.isValidEmail,
               let passwordText = passwordTextField.text, !passwordText.isEmpty else {
             return false
         }
@@ -266,6 +281,7 @@ extension LoginViewController {
     @objc private func textFieldsDidChange() {
         idClearButton.isHidden = idTextField.text?.isEmpty ?? true
         passwordRightStackView.isHidden = passwordTextField.text?.isEmpty ?? true
+        warningLabel.isHidden = true
         
         if areValidTextFields() {
             loginButton.backgroundColor = .tvingRed
@@ -282,8 +298,11 @@ extension LoginViewController {
 extension LoginViewController {
     @objc func loginButtonTapped() {
         if !areValidTextFields() {
+            warningLabel.isHidden = false
             return
         }
+        
+        warningLabel.isHidden = true
         
         let welcomeVC = WelcomeViewController()
         welcomeVC.setLabelText(user: nickname ?? idTextField.text)
