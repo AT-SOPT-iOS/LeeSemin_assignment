@@ -34,7 +34,34 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton: UIButton = {
+    private let passwordRightStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 15
+        stackView.isHidden = true
+        return stackView
+    }()
+    
+    private let idClearButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(.xCircle, for: .normal)
+        button.isHidden = true
+        return button
+    }()
+    
+    private let passwordClearButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(.xCircle, for: .normal)
+        return button
+    }()
+    
+    private let passwordSecurityButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(.eyeSlash, for: .normal)
+        return button
+    }()
+    
+    private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.gray2, for: .normal)
@@ -42,7 +69,6 @@ class LoginViewController: UIViewController {
         button.layer.borderColor = UIColor(named: "gray4")?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
-        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -79,7 +105,7 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private lazy var signUpButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton()
         let attributedTitle = NSAttributedString(
             string: "닉네임 만들러가기",
@@ -90,7 +116,6 @@ class LoginViewController: UIViewController {
             ]
         )
         button.setAttributedTitle(attributedTitle, for: .normal)
-        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -101,6 +126,8 @@ class LoginViewController: UIViewController {
         setUI()
         setLayout()
         setTextFieldTargets()
+        setRightView()
+        setButtonTargets()
     }
 }
 
@@ -123,6 +150,9 @@ extension LoginViewController {
             questionLabel,
             signUpButton
         )
+        
+        passwordRightStackView.addArrangedSubview(passwordClearButton)
+        passwordRightStackView.addArrangedSubview(passwordSecurityButton)
     }
     
     private func setLayout() {
@@ -143,6 +173,12 @@ extension LoginViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(335)
             $0.height.equalTo(52)
+        }
+        
+        [idClearButton, passwordClearButton, passwordSecurityButton].forEach {
+            $0.snp.makeConstraints {
+                $0.size.equalTo(20)
+            }
         }
         
         loginButton.snp.makeConstraints {
@@ -187,6 +223,23 @@ extension LoginViewController {
             $0.addTarget(self, action: #selector(textFieldsDidChange), for: .editingChanged)
         }
     }
+    
+    private func setRightView() {
+        idTextField.rightView = idClearButton
+        idTextField.rightViewMode = .whileEditing
+        
+        passwordTextField.rightView = passwordRightStackView
+        passwordTextField.rightViewMode = .whileEditing
+    }
+    
+    private func setButtonTargets() {
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        
+        idClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
+        passwordClearButton.addTarget(self, action: #selector(clearTextField(_:)), for: .touchUpInside)
+        passwordSecurityButton.addTarget(self, action: #selector(togglePasswordSecureEntry), for: .touchUpInside)
+    }
 }
 
 // MARK: - TextField Event Handler
@@ -202,7 +255,7 @@ extension LoginViewController {
         textField.layer.borderWidth = 0
     }
     
-    private func areTextFieldsValid() -> Bool {
+    private func areValidTextFields() -> Bool {
         guard let idText = idTextField.text, !idText.isEmpty,
               let passwordText = passwordTextField.text, !passwordText.isEmpty else {
             return false
@@ -211,7 +264,10 @@ extension LoginViewController {
     }
     
     @objc private func textFieldsDidChange() {
-        if areTextFieldsValid() {
+        idClearButton.isHidden = idTextField.text?.isEmpty ?? true
+        passwordRightStackView.isHidden = passwordTextField.text?.isEmpty ?? true
+        
+        if areValidTextFields() {
             loginButton.backgroundColor = .tvingRed
             loginButton.setTitleColor(.white, for: .normal)
         } else {
@@ -225,7 +281,7 @@ extension LoginViewController {
 
 extension LoginViewController {
     @objc func loginButtonTapped() {
-        if !areTextFieldsValid() {
+        if !areValidTextFields() {
             return
         }
         
@@ -248,5 +304,20 @@ extension LoginViewController {
         }
         
         present(inputNicknameVC, animated: true, completion: nil)
+    }
+    
+    @objc private func clearTextField(_ sender: UIButton) {
+        if sender == idClearButton {
+            idTextField.text = ""
+        } else if sender == passwordClearButton {
+            passwordTextField.text = ""
+        }
+        textFieldsDidChange()
+    }
+    
+    @objc private func togglePasswordSecureEntry(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        let imageName: UIImage? = passwordTextField.isSecureTextEntry ? .eyeSlash : .eye
+        sender.setImage(imageName, for: .normal)
     }
 }
