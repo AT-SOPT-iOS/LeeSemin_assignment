@@ -30,6 +30,15 @@ class InputNicknameViewController: UIViewController {
         return textField
     }()
     
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.text = "닉네임은 한글로만 입력 가능합니다."
+        label.textColor = .tvingRed
+        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("저장하기", for: .normal)
@@ -47,6 +56,7 @@ class InputNicknameViewController: UIViewController {
         setStyle()
         setUI()
         setLayout()
+        setTextFieldTarget()
     }
 }
 
@@ -58,7 +68,7 @@ extension InputNicknameViewController {
     }
     
     private func setUI() {
-        view.addSubviews(descriptionLabel, nicknameTextField, saveButton)
+        view.addSubviews(descriptionLabel, nicknameTextField, warningLabel, saveButton)
     }
     
     private func setLayout() {
@@ -74,6 +84,11 @@ extension InputNicknameViewController {
             $0.height.equalTo(52)
         }
         
+        warningLabel.snp.makeConstraints {
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(nicknameTextField.snp.leading)
+        }
+        
         saveButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(15)
             $0.centerX.equalToSuperview()
@@ -81,14 +96,28 @@ extension InputNicknameViewController {
             $0.height.equalTo(52)
         }
     }
+    
+    private func setTextFieldTarget() {
+        nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
 }
 
-// MARK: - Button Action
+// MARK: - Functions
 
 extension InputNicknameViewController {
     @objc private func saveButtonTapped() {
         guard let nickname = nicknameTextField.text, !nickname.isEmpty else { return }
+        
+        if !nickname.isKorean {
+            warningLabel.isHidden = false
+            return
+        }
+        
         nicknameCompletion?(nickname)
         dismiss(animated: true)
+    }
+    
+    @objc private func textFieldDidChange() {
+        warningLabel.isHidden = true
     }
 }
