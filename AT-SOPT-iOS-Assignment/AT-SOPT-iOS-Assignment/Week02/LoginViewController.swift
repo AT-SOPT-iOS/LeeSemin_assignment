@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
         label.text = "TVING ID 로그인"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont(name: "Pretendard-Medium", size: 23)
+        label.font = .medium(size: 23)
         return label
     }()
     
@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.gray2, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        button.titleLabel?.font = .semiBold(size: 14)
         button.layer.borderColor = UIColor(named: "gray4")?.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 3
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "아이디를 이메일 형식으로 입력해주세요."
         label.textColor = .tvingRed
-        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        label.font = .regular(size: 12)
         label.isHidden = true
         return label
     }()
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
         label.text = "아이디 찾기"
         label.textColor = .gray2
         label.textAlignment = .center
-        label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        label.font = .semiBold(size: 14)
         return label
     }()
     
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
         label.text = "비밀번호 찾기"
         label.textColor = .gray2
         label.textAlignment = .center
-        label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        label.font = .semiBold(size: 14)
         return label
     }()
     
@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
         label.text = "아직 계정이 없으신가요?"
         label.textColor = .gray3
         label.textAlignment = .center
-        label.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        label.font = .semiBold(size: 14)
         return label
     }()
     
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
             attributes: [
                 .underlineStyle: NSUnderlineStyle.single.rawValue,
                 .foregroundColor: UIColor.gray2,
-                .font: UIFont(name: "Pretendard-Regular", size: 14)
+                .font: UIFont.regular(size: 14)
             ]
         )
         button.setAttributedTitle(attributedTitle, for: .normal)

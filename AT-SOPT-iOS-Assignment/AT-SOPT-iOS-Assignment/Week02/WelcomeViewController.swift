@@ -24,7 +24,7 @@ class WelcomeViewController: UIViewController {
         label.textColor = .gray1
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.font = UIFont(name: "Pretendard-Bold", size: 23)
+        label.font = .bold(size: 23)
         return label
     }()
     
@@ -32,7 +32,7 @@ class WelcomeViewController: UIViewController {
         let button = UIButton()
         button.setTitle("메인으로", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        button.titleLabel?.font = .semiBold(size: 14)
         button.backgroundColor = .tvingRed
         button.layer.cornerRadius = 3
         return button

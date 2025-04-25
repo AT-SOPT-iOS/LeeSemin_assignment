@@ -15,7 +15,7 @@ class InputNicknameViewController: UIViewController {
         let label = UILabel()
         label.text = "닉네임을 입력해주세요"
         label.textColor = .black
-        label.font = UIFont(name: "Pretendard-Medium", size: 23)
+        label.font = .medium(size: 23)
         return label
     }()
     
@@ -23,7 +23,7 @@ class InputNicknameViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .gray2
         textField.textColor = .gray4
-        textField.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        textField.font = .semiBold(size: 14)
         textField.layer.cornerRadius = 3
         textField.clipsToBounds = true
         textField.setLeftPadding(25)
@@ -34,7 +34,7 @@ class InputNicknameViewController: UIViewController {
         let label = UILabel()
         label.text = "닉네임은 한글로만 입력 가능합니다."
         label.textColor = .tvingRed
-        label.font = UIFont(name: "Pretendard-Regular", size: 12)
+        label.font = .regular(size: 12)
         label.isHidden = true
         return label
     }()
@@ -43,7 +43,7 @@ class InputNicknameViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("저장하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        button.titleLabel?.font = .semiBold(size: 14)
         button.backgroundColor = .tvingRed
         button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
