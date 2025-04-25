@@ -271,7 +271,7 @@ extension LoginViewController {
     }
     
     private func areValidTextFields() -> Bool {
-        guard let idText = idTextField.text, !idText.isEmpty, idText.isValidEmail,
+        guard let idText = idTextField.text, !idText.isEmpty,
               let passwordText = passwordTextField.text, !passwordText.isEmpty else {
             return false
         }
@@ -298,6 +298,10 @@ extension LoginViewController {
 extension LoginViewController {
     @objc func loginButtonTapped() {
         if !areValidTextFields() {
+            return
+        }
+        
+        guard let idText = idTextField.text, idText.isValidEmail else {
             warningLabel.isHidden = false
             return
         }
