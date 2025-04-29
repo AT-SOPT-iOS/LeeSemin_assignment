@@ -10,7 +10,7 @@ import SnapKit
 
 class WelcomeViewController: UIViewController {
     
-    var user: String?
+    private var user: String?
     
     private let tvingImageView: UIImageView = {
         let imageView = UIImageView()
