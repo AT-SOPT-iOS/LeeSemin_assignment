@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
+    private let todaysTop20 = TodaysTop20()
+    
     private let homeBannerView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .homeBanner
@@ -20,7 +22,7 @@ class HomeViewController: UIViewController {
         imageView.clipsToBounds = true
         return imageView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +37,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func setStyle() {
         self.view.backgroundColor = .black
+        scrollView.showsVerticalScrollIndicator = false
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -43,7 +46,7 @@ extension HomeViewController {
         
         scrollView.addSubview(contentView)
         
-        contentView.addSubviews(homeBannerView)
+        contentView.addSubviews(homeBannerView, todaysTop20)
     }
     
     private func setLayout() {
@@ -62,6 +65,12 @@ extension HomeViewController {
             $0.top.equalToSuperview().offset(12)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(500)
+        }
+        
+        todaysTop20.snp.makeConstraints{
+            $0.top.equalTo(homeBannerView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(300)
             $0.bottom.equalToSuperview()
         }
     }
