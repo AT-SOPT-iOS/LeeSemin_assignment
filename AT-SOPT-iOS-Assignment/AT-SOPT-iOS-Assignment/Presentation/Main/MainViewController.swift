@@ -54,7 +54,8 @@ class MainViewController: UIViewController {
     private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     
     private lazy var viewControllers: [UIViewController] = [
-        HomeViewController() ] + tabTitles.map { createTempViewController(title: $0) }
+        HomeViewController()
+    ] + tabTitles.dropFirst().map { createTempViewController(title: $0) }
     
     private func createTempViewController(title: String) -> UIViewController {
         let vc = UIViewController()
