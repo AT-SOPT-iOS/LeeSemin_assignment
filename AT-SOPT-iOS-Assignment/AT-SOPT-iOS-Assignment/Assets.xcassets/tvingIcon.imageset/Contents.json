@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "tvingIcon.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
