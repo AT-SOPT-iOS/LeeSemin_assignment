@@ -24,6 +24,10 @@ struct RealTimePopularMovieContent {
     let posterImage: UIImage
 }
 
+struct BaseballContent {
+    let logoImage: UIImage
+}
+
 extension TodaysTop20Content {
     static let todaysTop20Data: [TodaysTop20Content] = [
         TodaysTop20Content(rank: 1, posterImage: .signal),
@@ -52,5 +56,20 @@ extension RealTimePopularMovieContent {
         RealTimePopularMovieContent(posterImage: .heartSignal),
         RealTimePopularMovieContent(posterImage: .cleanSweep),
         RealTimePopularMovieContent(posterImage: .fromMeToYou)
+    ]
+}
+
+extension BaseballContent {
+    static let baseballData: [BaseballContent] = [
+        BaseballContent(logoImage: .dusan),
+        BaseballContent(logoImage: .kia),
+        BaseballContent(logoImage: .lg),
+        BaseballContent(logoImage: .samsung),
+        BaseballContent(logoImage: .ssg),
+        BaseballContent(logoImage: .lotte),
+        BaseballContent(logoImage: .hanhwa),
+        BaseballContent(logoImage: .kiwoom),
+        BaseballContent(logoImage: .kt),
+        BaseballContent(logoImage: .nc)
     ]
 }
