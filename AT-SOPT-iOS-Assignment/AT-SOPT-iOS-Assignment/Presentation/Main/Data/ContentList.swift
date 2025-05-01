@@ -28,6 +28,10 @@ struct BaseballContent {
     let logoImage: UIImage
 }
 
+struct ChannelContent {
+    let logoImage: UIImage
+}
+
 extension TodaysTop20Content {
     static let todaysTop20Data: [TodaysTop20Content] = [
         TodaysTop20Content(rank: 1, posterImage: .signal),
@@ -71,5 +75,14 @@ extension BaseballContent {
         BaseballContent(logoImage: .kiwoom),
         BaseballContent(logoImage: .kt),
         BaseballContent(logoImage: .nc)
+    ]
+}
+
+extension ChannelContent {
+    static let channelData: [ChannelContent] = [
+        ChannelContent(logoImage: .appletv),
+        ChannelContent(logoImage: .kbo),
+        ChannelContent(logoImage: .kbl),
+        ChannelContent(logoImage: .afc)
     ]
 }
