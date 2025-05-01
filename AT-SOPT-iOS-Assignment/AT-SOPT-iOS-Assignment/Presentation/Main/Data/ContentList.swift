@@ -96,6 +96,7 @@ extension MasterpieceContent {
         MasterpieceContent(posterImage: .mrSunshine),
         MasterpieceContent(posterImage: .thatsLove),
         MasterpieceContent(posterImage: .moving),
-        MasterpieceContent(posterImage: .discoveryOfLove)
+        MasterpieceContent(posterImage: .discoveryOfLove),
+        MasterpieceContent(posterImage: .descendantsOfTheSun)
     ]
 }
