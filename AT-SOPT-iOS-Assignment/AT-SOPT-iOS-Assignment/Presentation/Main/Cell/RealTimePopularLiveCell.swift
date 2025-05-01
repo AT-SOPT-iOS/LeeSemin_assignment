@@ -13,7 +13,7 @@ import Then
 class RealTimePopularLiveCell: UICollectionViewCell {
     
     private let posterImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 3
         $0.clipsToBounds = true
     }
@@ -23,7 +23,7 @@ class RealTimePopularLiveCell: UICollectionViewCell {
         $0.textColor = .white
         $0.transform = CGAffineTransform(rotationAngle: 0.15)
     }
-   
+    
     private let titleLabel = UILabel().then {
         $0.font = .medium(size: 10)
         $0.textColor = .white
@@ -38,7 +38,7 @@ class RealTimePopularLiveCell: UICollectionViewCell {
         $0.font = .regular(size: 10)
         $0.textColor = .gray2
     }
- 
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
