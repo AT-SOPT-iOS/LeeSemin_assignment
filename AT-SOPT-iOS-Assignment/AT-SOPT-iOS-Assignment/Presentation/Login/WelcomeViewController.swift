@@ -28,13 +28,14 @@ class WelcomeViewController: UIViewController {
         return label
     }()
     
-    private let mainButton: UIButton = {
+    private lazy var mainButton: UIButton = {
         let button = UIButton()
         button.setTitle("메인으로", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .semiBold(size: 14)
         button.backgroundColor = .tvingRed
         button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(mainButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -92,5 +93,12 @@ extension WelcomeViewController {
         if let user = user {
             self.welcomeLabel.text = "\(user) 님\n반가워요!"
         }
+    }
+}
+
+extension WelcomeViewController {
+    @objc func mainButtonTapped() {
+        let mainVC = MainViewController()
+        self.navigationController?.pushViewController(mainVC, animated: true)
     }
 }
