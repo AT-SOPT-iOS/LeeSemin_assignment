@@ -20,6 +20,10 @@ struct RealTimePopularLiveContent {
     let ratings: String
 }
 
+struct RealTimePopularMovieContent {
+    let posterImage: UIImage
+}
+
 extension TodaysTop20Content {
     static let todaysTop20Data: [TodaysTop20Content] = [
         TodaysTop20Content(rank: 1, posterImage: .signal),
@@ -37,5 +41,16 @@ extension RealTimePopularLiveContent {
         RealTimePopularLiveContent(posterImage: .earthArcade, rank: 4, title: "뿅뿅 지구오락실", episode: "2화", ratings: "7.5%"),
         RealTimePopularLiveContent(posterImage: .residentPlaybook, rank: 5, title: "언젠가는 슬기로울 전공의생활", episode: "1화", ratings: "3.5%"),
         RealTimePopularLiveContent(posterImage: .theDivorceInsurance, rank: 6, title: "이혼보험", episode: "8화", ratings: "2.9%")
+    ]
+}
+
+extension RealTimePopularMovieContent {
+    static let realTimePopularMovieData: [RealTimePopularMovieContent] = [
+        RealTimePopularMovieContent(posterImage: .greenBeanRedBean),
+        RealTimePopularMovieContent(posterImage: .imSolo),
+        RealTimePopularMovieContent(posterImage: .refrigerator),
+        RealTimePopularMovieContent(posterImage: .heartSignal),
+        RealTimePopularMovieContent(posterImage: .cleanSweep),
+        RealTimePopularMovieContent(posterImage: .fromMeToYou)
     ]
 }
