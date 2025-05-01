@@ -21,6 +21,14 @@ class Masterpiece: UIView {
         return label
     }()
     
+    private let indicatorStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        stackView.alignment = .center
+        return stackView
+    }()
+    
     private let collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -31,6 +39,12 @@ class Masterpiece: UIView {
         return collectionView
     }()
     
+    private var currentPage: Int = 0 {
+        didSet {
+            updateIndicators()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -38,6 +52,7 @@ class Masterpiece: UIView {
         setLayout()
         setCollectionView()
         setDelegate()
+        setIndicators()
     }
     
     required init?(coder: NSCoder) {
@@ -45,13 +60,18 @@ class Masterpiece: UIView {
     }
     
     private func setUI() {
-        addSubviews(titleLabel, collectionView)
+        addSubviews(titleLabel, indicatorStackView, collectionView)
     }
     
     private func setLayout() {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(8)
+        }
+        
+        indicatorStackView.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().offset(-8)
         }
         
         collectionView.snp.makeConstraints {
@@ -68,6 +88,26 @@ class Masterpiece: UIView {
     private func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    private func setIndicators() {
+        indicatorStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        for _ in 0..<contentList.count {
+            let dot = UIView()
+            dot.backgroundColor = .gray3
+            dot.layer.cornerRadius = 2
+            dot.snp.makeConstraints { $0.size.equalTo(4) }
+            indicatorStackView.addArrangedSubview(dot)
+        }
+        
+        updateIndicators()
+    }
+    
+    private func updateIndicators() {
+        for (index, view) in indicatorStackView.arrangedSubviews.enumerated() {
+            view.backgroundColor = (index == currentPage) ? .white : .gray3
+        }
     }
 }
 
@@ -101,5 +141,20 @@ extension Masterpiece: UICollectionViewDataSource {
         }
         cell.configure(contentList[indexPath.row])
         return cell
+    }
+}
+
+extension Masterpiece: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x <= 0 {
+            currentPage = 0
+        } else if scrollView.contentOffset.x >= scrollView.contentSize.width - scrollView.bounds.width {
+            currentPage = contentList.count - 1
+        } else {
+            let center = CGPoint(x: collectionView.contentOffset.x + collectionView.bounds.size.width / 2, y: collectionView.bounds.size.height / 2)
+            if let indexPath = collectionView.indexPathForItem(at: center) {
+                currentPage = indexPath.item
+            }
+        }
     }
 }
