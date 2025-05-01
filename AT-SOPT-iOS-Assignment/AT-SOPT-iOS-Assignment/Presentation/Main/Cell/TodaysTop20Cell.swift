@@ -42,12 +42,12 @@ class TodaysTop20Cell: UICollectionViewCell {
     private func setLayout() {
         rankLabel.snp.makeConstraints {
             $0.bottom.equalTo(posterImageView.snp.bottom)
-            $0.leading.equalToSuperview().offset(8)
+            $0.leading.equalToSuperview().offset(6)
         }
         
         posterImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(rankLabel.snp.trailing).offset(10)
+            $0.leading.equalTo(rankLabel.snp.trailing).offset(8)
             $0.width.equalTo(98)
             $0.height.equalTo(146)
         }

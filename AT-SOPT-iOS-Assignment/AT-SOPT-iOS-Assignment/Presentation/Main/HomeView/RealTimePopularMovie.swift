@@ -70,7 +70,7 @@ class RealTimePopularMovie: UIView {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(150)
+            $0.height.equalTo(160)
         }
     }
     
@@ -86,7 +86,7 @@ class RealTimePopularMovie: UIView {
 
 extension RealTimePopularMovie: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 150)
+        return CGSize(width: 100, height: 160)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

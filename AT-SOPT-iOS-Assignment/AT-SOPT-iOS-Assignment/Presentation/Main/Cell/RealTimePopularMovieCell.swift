@@ -36,7 +36,7 @@ class RealTimePopularMovieCell: UICollectionViewCell {
     private func setLayout() {
         posterImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().offset(8)
+            $0.leading.equalToSuperview().offset(10)
             $0.width.equalTo(98)
             $0.height.equalTo(146)
         }

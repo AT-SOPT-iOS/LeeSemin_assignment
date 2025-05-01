@@ -57,7 +57,7 @@ class Masterpiece: UIView {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(150)
+            $0.height.equalTo(90)
         }
     }
     
@@ -73,7 +73,7 @@ class Masterpiece: UIView {
 
 extension Masterpiece: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 150)
+        return CGSize(width: 160, height: 90)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

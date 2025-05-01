@@ -42,9 +42,9 @@ class Baseball: UIView {
     
     private func setLayout() {
         collectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(90)
+            $0.height.equalTo(50)
         }
     }
     
@@ -60,7 +60,7 @@ class Baseball: UIView {
 
 extension Baseball: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: 60)
+        return CGSize(width: 80, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

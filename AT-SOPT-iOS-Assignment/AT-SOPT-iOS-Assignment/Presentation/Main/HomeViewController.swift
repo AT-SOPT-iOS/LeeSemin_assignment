@@ -127,7 +127,7 @@ extension HomeViewController {
         homeBannerView.snp.makeConstraints{
             $0.top.equalToSuperview().offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(500)
+            $0.height.equalTo(480)
         }
         
         todaysTop20.snp.makeConstraints{
@@ -145,13 +145,13 @@ extension HomeViewController {
         realTimePopularMovie.snp.makeConstraints {
             $0.top.equalTo(realTimePopularLive.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(180)
+            $0.height.equalTo(200)
         }
         
         baseball.snp.makeConstraints {
             $0.top.equalTo(realTimePopularMovie.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(90)
+            $0.height.equalTo(60)
         }
         
         channel.snp.makeConstraints {

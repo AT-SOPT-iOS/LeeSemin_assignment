@@ -70,7 +70,7 @@ class RealTimePopularLive: UIView {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(150)
+            $0.height.equalTo(140)
         }
     }
     
@@ -86,7 +86,7 @@ class RealTimePopularLive: UIView {
 
 extension RealTimePopularLive: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 150)
+        return CGSize(width: 160, height: 140)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
