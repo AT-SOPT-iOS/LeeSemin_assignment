@@ -28,6 +28,52 @@ class HomeViewController: UIViewController {
         return imageView
     }()
     
+    private let footerContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1)
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    
+    private let noticeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "공지"
+        label.textColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
+        label.font = .medium(size: 11)
+        return label
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "티빙 계정 공유 정책 추가 안내"
+        label.textColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1)
+        label.font = .medium(size: 11)
+        return label
+    }()
+    
+    private let arrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .forward
+        return imageView
+    }()
+    
+    private let footerLabel: UILabel = {
+        let label = UILabel()
+        let text = "고객문의 • 이용약관 • 개인정보처리방침\n사업자정보 • 인재채용"
+        let attributedText = NSMutableAttributedString(string: text, attributes: [
+            .foregroundColor: UIColor(white: 140/255, alpha: 1)
+        ])
+        
+        if let range = text.range(of: "개인정보처리방침") {
+            attributedText.addAttribute(.foregroundColor, value: UIColor(white: 217/255, alpha: 1), range: NSRange(range, in: text))
+        }
+        
+        label.attributedText = attributedText
+        label.font = .medium(size: 11)
+        label.numberOfLines = 0
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,16 +97,19 @@ extension HomeViewController {
         
         scrollView.addSubview(contentView)
         
-        contentView
-            .addSubviews(
-                homeBannerView,
-                todaysTop20,
-                realTimePopularLive,
-                realTimePopularMovie,
-                baseball,
-                channel,
-                masterpiece
-            )
+        contentView.addSubviews(
+            homeBannerView,
+            todaysTop20,
+            realTimePopularLive,
+            realTimePopularMovie,
+            baseball,
+            channel,
+            masterpiece,
+            footerContainerView,
+            footerLabel
+        )
+        
+        footerContainerView.addSubviews(noticeLabel, descriptionLabel, arrowImageView)
     }
     
     private func setLayout() {
@@ -114,8 +163,36 @@ extension HomeViewController {
         masterpiece.snp.makeConstraints {
             $0.top.equalTo(channel.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(200)
-            $0.bottom.equalToSuperview()
+            $0.height.equalTo(150)
+        }
+        
+        footerContainerView.snp.makeConstraints {
+            $0.top.equalTo(masterpiece.snp.bottom)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(347)
+            $0.height.equalTo(50)
+        }
+        
+        noticeLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalTo(noticeLabel.snp.trailing).offset(8)
+        }
+        
+        arrowImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(12)
+            $0.size.equalTo(18)
+        }
+        
+        footerLabel.snp.makeConstraints {
+            $0.top.equalTo(footerContainerView.snp.bottom).offset(16)
+            $0.leading.equalTo(footerContainerView.snp.leading)
+            $0.bottom.equalToSuperview().inset(50)
         }
     }
 }
