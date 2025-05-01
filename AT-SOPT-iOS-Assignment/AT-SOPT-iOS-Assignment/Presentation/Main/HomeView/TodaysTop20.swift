@@ -11,7 +11,7 @@ import SnapKit
 
 class TodaysTop20: UIView, UICollectionViewDelegate {
     
-    private var contentList = ContentList.todaysTop20Data
+    private var contentList = TodaysTop20Content.todaysTop20Data
     
     private let titleLabel: UILabel = {
         let label = UILabel()

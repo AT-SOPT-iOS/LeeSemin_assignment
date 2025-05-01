@@ -53,8 +53,8 @@ class TodaysTop20Cell: UICollectionViewCell {
         }
     }
     
-    func configure(_ contentList: ContentList) {
-        numberLabel.text = "\(contentList.rank)"
-        posterImageView.image = contentList.logoImage
+    func configure(_ content: TodaysTop20Content) {
+        numberLabel.text = "\(content.rank)"
+        posterImageView.image = content.posterImage
     }
 }
