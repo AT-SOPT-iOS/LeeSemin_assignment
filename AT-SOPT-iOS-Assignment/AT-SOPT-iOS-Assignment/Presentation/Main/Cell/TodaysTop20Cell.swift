@@ -12,7 +12,7 @@ import Then
 
 class TodaysTop20Cell: UICollectionViewCell {
     
-    private let numberLabel = UILabel().then {
+    private let rankLabel = UILabel().then {
         $0.font = .semiBold(size: 50)
         $0.textColor = .white
         $0.transform = CGAffineTransform(rotationAngle: 0.15)
@@ -36,25 +36,25 @@ class TodaysTop20Cell: UICollectionViewCell {
     }
     
     private func setUI() {
-        addSubviews(numberLabel, posterImageView)
+        addSubviews(rankLabel, posterImageView)
     }
     
     private func setLayout() {
-        numberLabel.snp.makeConstraints {
+        rankLabel.snp.makeConstraints {
             $0.bottom.equalTo(posterImageView.snp.bottom)
             $0.leading.equalToSuperview().offset(8)
         }
         
         posterImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.equalTo(numberLabel.snp.trailing).offset(10)
+            $0.leading.equalTo(rankLabel.snp.trailing).offset(10)
             $0.width.equalTo(98)
             $0.height.equalTo(146)
         }
     }
     
     func configure(_ content: TodaysTop20Content) {
-        numberLabel.text = "\(content.rank)"
+        rankLabel.text = "\(content.rank)"
         posterImageView.image = content.posterImage
     }
 }

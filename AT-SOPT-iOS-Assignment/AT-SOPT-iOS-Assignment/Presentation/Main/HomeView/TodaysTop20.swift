@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-class TodaysTop20: UIView, UICollectionViewDelegate {
+class TodaysTop20: UIView {
     
     private var contentList = TodaysTop20Content.todaysTop20Data
     
