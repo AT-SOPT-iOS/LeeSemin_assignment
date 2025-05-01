@@ -32,6 +32,10 @@ struct ChannelContent {
     let logoImage: UIImage
 }
 
+struct MasterpieceContent {
+    let posterImage: UIImage
+}
+
 extension TodaysTop20Content {
     static let todaysTop20Data: [TodaysTop20Content] = [
         TodaysTop20Content(rank: 1, posterImage: .signal),
@@ -84,5 +88,14 @@ extension ChannelContent {
         ChannelContent(logoImage: .kbo),
         ChannelContent(logoImage: .kbl),
         ChannelContent(logoImage: .afc)
+    ]
+}
+
+extension MasterpieceContent {
+    static let masterpieceData: [MasterpieceContent] = [
+        MasterpieceContent(posterImage: .mrSunshine),
+        MasterpieceContent(posterImage: .thatsLove),
+        MasterpieceContent(posterImage: .moving),
+        MasterpieceContent(posterImage: .discoveryOfLove)
     ]
 }
