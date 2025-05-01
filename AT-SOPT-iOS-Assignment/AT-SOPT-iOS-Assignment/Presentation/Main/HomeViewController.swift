@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     
     private let todaysTop20 = TodaysTop20()
     private let realTimePopularLive = RealTimePopularLive()
+    private let realTimePopularMovie = RealTimePopularMovie()
     
     private let homeBannerView: UIImageView = {
         let imageView = UIImageView()
@@ -47,7 +48,7 @@ extension HomeViewController {
         
         scrollView.addSubview(contentView)
         
-        contentView.addSubviews(homeBannerView, todaysTop20, realTimePopularLive)
+        contentView.addSubviews(homeBannerView, todaysTop20, realTimePopularLive, realTimePopularMovie)
     }
     
     private func setLayout() {
@@ -78,6 +79,12 @@ extension HomeViewController {
             $0.top.equalTo(todaysTop20.snp.bottom)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(210)
+        }
+        
+        realTimePopularMovie.snp.makeConstraints {
+            $0.top.equalTo(realTimePopularLive.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(180)
             $0.bottom.equalToSuperview()
         }
     }
