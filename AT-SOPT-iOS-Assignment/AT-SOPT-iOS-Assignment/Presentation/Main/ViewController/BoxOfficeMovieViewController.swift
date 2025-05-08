@@ -10,7 +10,7 @@ import SnapKit
 
 class BoxOfficeMovieViewController: UIViewController {
     
-    private var movieList: [String] = []
+    private var movieList: [MovieInfo] = []
     
     private let tableView = UITableView()
     
@@ -30,7 +30,7 @@ class BoxOfficeMovieViewController: UIViewController {
         tableView.do{
             $0.register(BoxOfficeMovieCell.self,
                         forCellReuseIdentifier: BoxOfficeMovieCell.identifier)
-            $0.rowHeight = 72
+            $0.rowHeight = 130
             $0.backgroundColor = .black
         }
     }
@@ -75,7 +75,14 @@ extension BoxOfficeMovieViewController: UITableViewDataSource {
             withIdentifier: BoxOfficeMovieCell.identifier,
             for: indexPath
         ) as? BoxOfficeMovieCell else { return UITableViewCell() }
-        cell.configure(movieName: movieList[indexPath.row])
+        let movie = movieList[indexPath.row]
+        cell.configure(
+            rank: movie.rank,
+            name: movie.name,
+            openDate: movie.openDate,
+            totalAudience: movie.totalAudience
+        )
+        
         return cell
     }
 }

@@ -11,11 +11,32 @@ import SnapKit
 
 final class BoxOfficeMovieCell: UITableViewCell {
     
-    private let movieNameLabel: UILabel = {
+    private let rankLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.textAlignment = .center
-        label.font = .medium(size: 25)
+        label.font = .semiBold(size: 40)
+        label.transform = CGAffineTransform(rotationAngle: 0.15)
+        return label
+    }()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .semiBold(size: 20)
+        return label
+    }()
+    
+    private let openDateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .semiBold(size: 15)
+        return label
+    }()
+    
+    private let totalAudienceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .semiBold(size: 15)
         return label
     }()
     
@@ -38,19 +59,37 @@ final class BoxOfficeMovieCell: UITableViewCell {
     }
     
     private func setUI() {
-        [movieNameLabel].forEach {
+        [rankLabel, nameLabel, openDateLabel, totalAudienceLabel].forEach {
             contentView.addSubview($0)
         }
     }
     
     private func setLayout() {
-        movieNameLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
+        rankLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(24)
             $0.centerY.equalToSuperview()
+        }
+        
+        nameLabel.snp.makeConstraints {
+            $0.top.equalTo(rankLabel.snp.top)
+            $0.leading.equalToSuperview().offset(100)
+        }
+        
+        openDateLabel.snp.makeConstraints {
+            $0.top.equalTo(nameLabel.snp.bottom).offset(12)
+            $0.leading.equalToSuperview().offset(100)
+        }
+        
+        totalAudienceLabel.snp.makeConstraints {
+            $0.top.equalTo(openDateLabel.snp.bottom).offset(12)
+            $0.leading.equalToSuperview().offset(100)
         }
     }
     
-    func configure(movieName: String) {
-        movieNameLabel.text = movieName
+    func configure(rank: String, name: String, openDate: String, totalAudience: String) {
+        rankLabel.text = rank
+        nameLabel.text = name
+        openDateLabel.text = "개봉일: \(openDate)"
+        totalAudienceLabel.text = "누적 관객수: \(totalAudience)"
     }
 }
