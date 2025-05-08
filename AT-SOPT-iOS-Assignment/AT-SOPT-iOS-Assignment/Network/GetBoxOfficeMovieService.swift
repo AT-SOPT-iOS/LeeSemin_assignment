@@ -16,7 +16,7 @@ final class GetBoxOfficeMovieService {
         var urlString = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
         
         let targetDt = "20240304"
-      
+        
         urlString += "?key=\(Config.key)&targetDt=\(targetDt)"
         
         
@@ -30,7 +30,7 @@ final class GetBoxOfficeMovieService {
         return request
     }
     
-     func fetchMovieList() async throws -> [String] {
+    func fetchMovieList() async throws -> [MovieInfo] {
         guard let request = makeRequest() else {
             throw NetworkError.requestEncodingError
         }
@@ -44,10 +44,25 @@ final class GetBoxOfficeMovieService {
         
         do {
             let decoded = try JSONDecoder().decode(BoxOfficeMovieResponseWrapper.self, from: data)
-            return decoded.boxOfficeResult.dailyBoxOfficeList.map { $0.movieNm }
+            let movieInfos = decoded.boxOfficeResult.dailyBoxOfficeList.map { item in
+                MovieInfo(
+                    rank: item.rank,
+                    name: item.movieNm,
+                    openDate: item.openDt,
+                    totalAudience: item.audiAcc
+                )
+            }
+            return movieInfos
         } catch {
             print("디코딩 실패:", error)
             throw NetworkError.responseDecodingError
         }
     }
+}
+
+struct MovieInfo {
+    let rank: String
+    let name: String
+    let openDate: String
+    let totalAudience: String
 }
