@@ -93,7 +93,7 @@ class BoxOfficeMovieViewController: UIViewController {
         tableView.snp.makeConstraints{
             $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
     
