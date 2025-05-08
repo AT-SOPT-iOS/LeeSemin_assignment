@@ -12,13 +12,10 @@ final class GetBoxOfficeMovieService {
     static let shared = GetBoxOfficeMovieService()
     private init() {}
     
-    private func makeRequest() -> URLRequest? {
+    private func makeRequest(targetDt: String) -> URLRequest? {
         var urlString = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
         
-        let targetDt = "20240304"
-        
         urlString += "?key=\(Config.key)&targetDt=\(targetDt)"
-        
         
         guard let url = URL(string: urlString) else {
             return nil
@@ -30,8 +27,8 @@ final class GetBoxOfficeMovieService {
         return request
     }
     
-    func fetchMovieList() async throws -> [MovieInfo] {
-        guard let request = makeRequest() else {
+    func fetchMovieList(targetDt: String) async throws -> [MovieInfo] {
+        guard let request = makeRequest(targetDt: targetDt) else {
             throw NetworkError.requestEncodingError
         }
         
