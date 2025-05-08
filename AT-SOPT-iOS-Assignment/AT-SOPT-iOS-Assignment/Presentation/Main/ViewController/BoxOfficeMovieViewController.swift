@@ -28,8 +28,8 @@ class BoxOfficeMovieViewController: UIViewController {
         view.backgroundColor = .black
         
         tableView.do{
-            $0.register(MovieCell.self,
-                        forCellReuseIdentifier: MovieCell.identifier)
+            $0.register(BoxOfficeMovieCell.self,
+                        forCellReuseIdentifier: BoxOfficeMovieCell.identifier)
             $0.rowHeight = 72
             $0.backgroundColor = .black
         }
@@ -52,7 +52,7 @@ class BoxOfficeMovieViewController: UIViewController {
     private func fetchMovies() {
         Task {
             do {
-                let movies = try await GetMovieService.shared.fetchMovieList()
+                let movies = try await GetBoxOfficeMovieService.shared.fetchMovieList()
                 self.movieList = movies
                 self.tableView.reloadData()
             } catch {
@@ -72,9 +72,9 @@ extension BoxOfficeMovieViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: MovieCell.identifier,
+            withIdentifier: BoxOfficeMovieCell.identifier,
             for: indexPath
-        ) as? MovieCell else { return UITableViewCell() }
+        ) as? BoxOfficeMovieCell else { return UITableViewCell() }
         cell.configure(movieName: movieList[indexPath.row])
         return cell
     }

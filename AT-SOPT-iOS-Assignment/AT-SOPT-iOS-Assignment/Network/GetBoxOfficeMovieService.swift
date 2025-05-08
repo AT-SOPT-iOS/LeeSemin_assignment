@@ -1,5 +1,5 @@
 //
-//  GetMovieService.swift
+//  GetBoxOfficeMovieService.swift
 //  AT-SOPT-iOS-Assignment
 //
 //  Created by 이세민 on 5/8/25.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class GetMovieService {
+final class GetBoxOfficeMovieService {
     
-    static let shared = GetMovieService()
+    static let shared = GetBoxOfficeMovieService()
     private init() {}
     
     private func makeRequest() -> URLRequest? {
@@ -43,7 +43,7 @@ final class GetMovieService {
         }
         
         do {
-            let decoded = try JSONDecoder().decode(MovieResponseWrapper.self, from: data)
+            let decoded = try JSONDecoder().decode(BoxOfficeMovieResponseWrapper.self, from: data)
             return decoded.boxOfficeResult.dailyBoxOfficeList.map { $0.movieNm }
         } catch {
             print("디코딩 실패:", error)

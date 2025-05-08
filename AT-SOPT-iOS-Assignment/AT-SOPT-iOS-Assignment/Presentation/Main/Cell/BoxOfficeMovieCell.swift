@@ -1,5 +1,5 @@
 //
-//  MovieCell.swift
+//  BoxOfficeMovieCell.swift
 //  AT-SOPT-iOS-Assignment
 //
 //  Created by 이세민 on 5/8/25.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class MovieCell: UITableViewCell {
+final class BoxOfficeMovieCell: UITableViewCell {
     
     private let movieNameLabel: UILabel = {
         let label = UILabel()

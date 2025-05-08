@@ -1,5 +1,5 @@
 //
-//  MovieResponseModel.swift
+//  BoxOfficeMovieResponseModel.swift
 //  AT-SOPT-iOS-Assignment
 //
 //  Created by 이세민 on 5/8/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieResponseWrapper: Codable {
+struct BoxOfficeMovieResponseWrapper: Codable {
     let boxOfficeResult: BoxOfficeResult
 }
 
