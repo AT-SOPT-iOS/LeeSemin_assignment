@@ -12,6 +12,14 @@ class BoxOfficeMovieViewController: UIViewController {
     
     private var movieList: [MovieInfo] = []
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "일별 박스오피스 10"
+        label.textColor = .white
+        label.font = .bold(size: 20)
+        return label
+    }()
+    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -36,12 +44,19 @@ class BoxOfficeMovieViewController: UIViewController {
     }
     
     private func setUI() {
-        view.addSubview(tableView)
+        view.addSubviews(titleLabel, tableView)
     }
     
     private func setLayout(){
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(32)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
         tableView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     

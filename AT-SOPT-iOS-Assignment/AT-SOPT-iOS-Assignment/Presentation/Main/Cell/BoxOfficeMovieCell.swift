@@ -14,7 +14,7 @@ final class BoxOfficeMovieCell: UITableViewCell {
     private let rankLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .semiBold(size: 40)
+        label.font = .semiBold(size: 35)
         label.transform = CGAffineTransform(rotationAngle: 0.15)
         return label
     }()
@@ -22,7 +22,7 @@ final class BoxOfficeMovieCell: UITableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .semiBold(size: 20)
+        label.font = .semiBold(size: 18)
         return label
     }()
     
