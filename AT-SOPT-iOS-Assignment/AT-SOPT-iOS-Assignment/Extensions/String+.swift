@@ -20,4 +20,16 @@ extension String {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
         return predicate.evaluate(with: self)
     }
+    
+    func formattedWithDecimalSeparator() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        if let number = Int(self),
+           let formattedString = formatter.string(from: NSNumber(value: number)) {
+            return formattedString
+        } else {
+            return self
+        }
+    }
 }

@@ -90,6 +90,6 @@ final class BoxOfficeMovieCell: UITableViewCell {
         rankLabel.text = rank
         nameLabel.text = name
         openDateLabel.text = "개봉일: \(openDate)"
-        totalAudienceLabel.text = "누적 관객수: \(totalAudience)"
+        totalAudienceLabel.text = "누적 관객수: \(totalAudience.formattedWithDecimalSeparator())명"
     }
 }
