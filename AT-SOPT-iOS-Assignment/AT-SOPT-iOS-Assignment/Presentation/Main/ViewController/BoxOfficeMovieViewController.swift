@@ -14,38 +14,9 @@ class BoxOfficeMovieViewController: UIViewController {
     
     private var movieList: [MovieInfo] = []
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "일별 박스오피스 10"
-        label.textColor = .white
-        label.font = .bold(size: 20)
-        return label
-    }()
-    
-    private let dateTextField: UITextField = {
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .numberPad
-        textField.textColor = .white
-        textField.backgroundColor = .clear
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = UIColor.white.cgColor
-        textField.layer.cornerRadius = 8
-        return textField
-    }()
-    
-    private lazy var searchButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("검색", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 8
-        button.layer.borderWidth = 1.5
-        button.layer.borderColor = UIColor.white.cgColor
-        button.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
+    private let titleLabel = UILabel()
+    private let dateTextField = UITextField()
+    private lazy var searchButton = UIButton(type: .system)
     private let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -59,6 +30,32 @@ class BoxOfficeMovieViewController: UIViewController {
     
     private func setStyle() {
         view.backgroundColor = .black
+        
+        titleLabel.do {
+            $0.text = "일별 박스오피스 10"
+            $0.textColor = .white
+            $0.font = .bold(size: 20)
+        }
+        
+        dateTextField.do {
+            $0.borderStyle = .roundedRect
+            $0.keyboardType = .numberPad
+            $0.textColor = .white
+            $0.backgroundColor = .clear
+            $0.layer.borderWidth = 1.5
+            $0.layer.borderColor = UIColor.white.cgColor
+            $0.layer.cornerRadius = 8
+        }
+        
+        searchButton.do {
+            $0.setTitle("검색", for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.backgroundColor = .clear
+            $0.layer.cornerRadius = 8
+            $0.layer.borderWidth = 1.5
+            $0.layer.borderColor = UIColor.white.cgColor
+            $0.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        }
         
         tableView.do{
             $0.register(BoxOfficeMovieCell.self,
