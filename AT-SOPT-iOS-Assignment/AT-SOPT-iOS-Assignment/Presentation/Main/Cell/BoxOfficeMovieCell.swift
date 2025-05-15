@@ -59,9 +59,7 @@ final class BoxOfficeMovieCell: UITableViewCell {
     }
     
     private func setUI() {
-        [rankLabel, nameLabel, openDateLabel, totalAudienceLabel].forEach {
-            contentView.addSubview($0)
-        }
+        addSubviews(rankLabel, nameLabel, openDateLabel, totalAudienceLabel)
     }
     
     private func setLayout() {
