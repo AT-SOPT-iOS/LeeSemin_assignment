@@ -20,19 +20,23 @@ struct RealTimePopularLiveContent {
     let ratings: String
 }
 
-struct RealTimePopularMovieContent {
+struct RealTimePopularMovieContent: Identifiable {
+    let id = UUID()
     let posterImage: UIImage
 }
 
-struct BaseballContent {
+struct BaseballContent: Identifiable {
+    let id = UUID()
     let logoImage: UIImage
 }
 
-struct ChannelContent {
+struct ChannelContent: Identifiable {
+    let id = UUID()
     let logoImage: UIImage
 }
 
-struct MasterpieceContent {
+struct MasterpieceContent: Identifiable {
+    let id = UUID()
     let posterImage: UIImage
 }
 
